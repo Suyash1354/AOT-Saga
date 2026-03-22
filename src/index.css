@@ -1,2 +1,20 @@
 @import "tailwindcss";
 
+@font-face {
+    font-family: "ClashDisplay-Medium";
+    src: url(/public/fonts/ClashDisplay-Medium.otf);
+}
+
+@font-face {
+    font-family: "Harmond-SemiBoldCondensed";
+    src: url(/public/fonts/Harmond-SemiBoldCondensed.otf);
+}
+@font-face {
+    font-family: "Nohemi-Regular";
+    src: url(/public/fonts/Nohemi-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Nohemi-Medium";
+    src: url(/public//fonts/Nohemi-Bold.ttf);
+}

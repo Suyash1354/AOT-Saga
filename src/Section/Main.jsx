@@ -22,34 +22,82 @@ const Main = () => {
     { id: 18, src: "/Videos/Clip18.mp4" },
   ];
 
-  
+  const names = [
+    "GUNTHER",
+    "ELD",
+    "OLUO",
+    "PETRA",
+    "SASHA",
+    "ISABEL",
+    "FURLAN",
+    "MARCO",
+    "MOBLIT",
+    "ERWIN",
+    "MIKE",
+    "NANABA",
+    "ILSE",
+    "DIETER",
+    "DITA",
+    "LUKE",
+    "GELGAR",
+    "LEVI",
+  ];
 
-  const chunkvideo = [];
+  // chunk into groups of 6
+  const chunkVideos = [];
+  const chunkNames = [];
 
   for (let i = 0; i < videos.length; i += 6) {
-    chunkvideo.push(videos.slice(i, i + 6));
+    chunkVideos.push(videos.slice(i, i + 6));
   }
 
- 
+  for (let i = 0; i < names.length; i += 6) {
+    chunkNames.push(names.slice(i, i + 6));
+  }
 
   return (
     <div className="w-full">
-      {chunkvideo.map((group, i) => (
-        <section className="h-screen flex items-center justify-center bg-amber-400">
+      {chunkVideos.map((group, i) => (
+        <section
+          key={i}
+          className="h-screen  flex items-center justify-center"
+        >
+          <div className="flex gap-20 ">
+            {/* LEFT SIDE */}
+            <div className="flex flex-col gap-6">
+              {group.slice(0, 3).map((video) => (
+                <video
+                  key={video.id}
+                  className="w-[22VW] h-[30vh] object-cover"
+                  src={video.src}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                />
+              ))}
+            </div>
 
-          
-          <div className="grid grid-cols-2 gap-x-100 gap-y-6">
-            {group.map((video) => (
-              <video
-                key={video.id}
-                className="w-[20vw] h-[30vh] object-cover"
-                src={video.src}
-                autoPlay
-                loop
-                muted
-                playsInline
-              />
-            ))}
+           <div className="flex flex-col items-center gap-4 text-[2vw] justify-center text-gray-300 font-[Harmond-SemiBoldCondensed]">
+              {chunkNames[i].map((name, index) => (
+                <h1 key={index}>{name}</h1>
+              ))}
+            </div>
+
+            {/* RIGHT SIDE */}
+            <div className="flex flex-col gap-6">
+              {group.slice(3, 6).map((video) => (
+                <video
+                  key={video.id}
+                  className="w-[22VW] h-[30vh] object-cover"
+                  src={video.src}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                />
+              ))}
+            </div>
           </div>
         </section>
       ))}
