@@ -14,9 +14,8 @@ const App = () => {
   const audioRef = useRef(null)
 
 useEffect(() => {
-
-
   const handleFirstClick = () => {
+    console.log("clicked")
     audioRef.current.play()
     document.removeEventListener("click", handleFirstClick)
   }
@@ -58,7 +57,6 @@ useEffect(() => {
 }, []);
   return (
     <div className="w-full h-screen bg-black">
-      <Loader />
        <audio ref={audioRef} src="/Bg-Audio.mp3" loop />
       <First />
       <Main />

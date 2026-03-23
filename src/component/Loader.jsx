@@ -1,26 +1,35 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
+import gsap from "gsap";
 
-const Loader = () => {
-  const [visible, setVisible] = useState(true)
+const Loader = ({ progress, isLoaded }) => {
+  const [hide, setHide] = useState(false);
 
   useEffect(() => {
-  const timer = setTimeout(() => {
-    document.body.style.overflow = "auto" // unlock scroll
-    setVisible(false)
-  }, 3000)
+    if (isLoaded) {
+      gsap.to(".loader", {
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        onComplete: () => setHide(true),
+      });
+    }
+  }, [isLoaded]);
 
-  return () => clearTimeout(timer)
-}, [])
-  if (!visible) return null
+  if (hide) return null;
 
   return (
-    <div className="fixed top-0 left-0 w-full h-screen bg-black flex flex-col justify-center items-center gap-4 z-[9999]">
-      
-      <div style={{
-        maskImage: "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0) 100%)",
-        WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0) 100%)",
-        animation: "blink 1.5s ease-in-out infinite"
-      }}>
+    <div className="loader fixed top-0 left-0 w-full h-screen bg-black flex flex-col justify-center items-center gap-4 z-[9999]">
+
+      {/* 🔥 YOUR IMAGE + MASK */}
+      <div
+        style={{
+          maskImage:
+            "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0) 100%)",
+          WebkitMaskImage:
+            "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0) 100%)",
+          animation: "blink 1.5s ease-in-out infinite",
+        }}
+      >
         <img
           src="/images/survey-corps.jpg"
           alt="Survey Corps"
@@ -28,6 +37,20 @@ const Loader = () => {
         />
       </div>
 
+      {/* 🔥 PROGRESS TEXT */}
+      <h1 className="text-white text-sm tracking-widest">
+        {progress}%
+      </h1>
+
+      {/* 🔥 PROGRESS BAR */}
+      <div className="w-[200px] h-[2px] bg-gray-700 overflow-hidden">
+        <div
+          className="h-full bg-white transition-all duration-300"
+          style={{ width: `${progress}%` }}
+        />
+      </div>
+
+      {/* YOUR BLINK ANIMATION */}
       <style>{`
         @keyframes blink {
           0%,100% { opacity: 0.3; }
@@ -35,7 +58,7 @@ const Loader = () => {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default Loader
+export default Loader;
