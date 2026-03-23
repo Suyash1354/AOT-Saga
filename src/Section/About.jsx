@@ -53,7 +53,7 @@ const About = () => {
 
     gsap.to(imageRef.current[index], {
       scale: 1.2,
-      duration: 0.8,
+      duration: 0.4,
       ease: "expo.inOut",
       filter: "grayscale(0%)",
     });
@@ -74,7 +74,7 @@ const About = () => {
 
     gsap.to(imageRef.current[currentActive.current], {
       scale: 1,
-      duration: 0.8,
+      duration: 0.4,
       ease: "expo.inOut",
       filter: "grayscale(100%)",
     });

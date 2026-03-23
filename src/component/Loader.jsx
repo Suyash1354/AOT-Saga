@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import gsap from "gsap";
 
-const Loader = ({ progress, isLoaded }) => {
+const Loader = ({ loadedCount, totalFirst, isLoaded }) => {
   const [hide, setHide] = useState(false);
+  const progress = Math.round((loadedCount / totalFirst) * 100);
 
   useEffect(() => {
     if (isLoaded) {
@@ -20,7 +21,7 @@ const Loader = ({ progress, isLoaded }) => {
   return (
     <div className="loader fixed top-0 left-0 w-full h-screen bg-black flex flex-col justify-center items-center gap-4 z-[9999]">
 
-      {/* 🔥 YOUR IMAGE + MASK */}
+      {/* IMAGE + MASK */}
       <div
         style={{
           maskImage:
@@ -37,12 +38,12 @@ const Loader = ({ progress, isLoaded }) => {
         />
       </div>
 
-      {/* 🔥 PROGRESS TEXT */}
+      {/* PROGRESS TEXT */}
       <h1 className="text-white text-sm tracking-widest">
         {progress}%
       </h1>
 
-      {/* 🔥 PROGRESS BAR */}
+      {/* PROGRESS BAR */}
       <div className="w-[200px] h-[2px] bg-gray-700 overflow-hidden">
         <div
           className="h-full bg-white transition-all duration-300"
@@ -50,7 +51,6 @@ const Loader = ({ progress, isLoaded }) => {
         />
       </div>
 
-      {/* YOUR BLINK ANIMATION */}
       <style>{`
         @keyframes blink {
           0%,100% { opacity: 0.3; }
