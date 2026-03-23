@@ -18,3 +18,8 @@
     font-family: "Nohemi-Medium";
     src: url(/public//fonts/Nohemi-Bold.ttf);
 }
+
+@font-face {
+    font-family: "round8-four";
+    src: url(/public/fonts/round8-four.otf);
+}

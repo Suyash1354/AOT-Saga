@@ -56,7 +56,7 @@ const Main = () => {
   }
 
   return (
-    <div className="w-full">
+    <div className="main-section w-full bg-[black]">
       {chunkVideos.map((group, i) => (
         <section
           key={i}
@@ -68,7 +68,7 @@ const Main = () => {
               {group.slice(0, 3).map((video) => (
                 <video
                   key={video.id}
-                  className="w-[22VW] h-[30vh] object-cover"
+                  className="lg:w-[22VW] lg:h-[30vh]  md:w-[28vw] md:h-[22vh]  w-[28vw] h-[16vh]  object-cover"
                   src={video.src}
                   autoPlay
                   loop
@@ -78,7 +78,7 @@ const Main = () => {
               ))}
             </div>
 
-           <div className="flex flex-col items-center gap-4 text-[2vw] justify-center text-gray-300 font-[Harmond-SemiBoldCondensed]">
+           <div className="flex flex-col items-center gap-4 lg:text-[2vw] md:text-[3vw] text-[3vw] justify-center text-gray-300 font-[Harmond-SemiBoldCondensed]">
               {chunkNames[i].map((name, index) => (
                 <h1 key={index}>{name}</h1>
               ))}
@@ -89,7 +89,7 @@ const Main = () => {
               {group.slice(3, 6).map((video) => (
                 <video
                   key={video.id}
-                  className="w-[22VW] h-[30vh] object-cover"
+                  className="lg:w-[22VW] lg:h-[30vh] md:w-[28vw] md:h-[22vh] w-[28vw] h-[16vh] object-cover"
                   src={video.src}
                   autoPlay
                   loop
