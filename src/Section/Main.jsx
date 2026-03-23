@@ -74,6 +74,8 @@ const Main = () => {
                   loop
                   muted
                   playsInline
+                  preload="none"     // don't load until needed
+  loading="lazy"  
                 />
               ))}
             </div>

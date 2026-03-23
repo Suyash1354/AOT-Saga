@@ -23,3 +23,9 @@
     font-family: "round8-four";
     src: url(/public/fonts/round8-four.otf);
 }
+
+@font-face {
+    font-family: "SuisseIntlCondTrial-Light";
+    src: url(/public/fonts/SuisseIntlCondTrial-LightItalic.otf);
+}
+
