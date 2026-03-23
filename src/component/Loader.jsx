@@ -32,7 +32,7 @@ const Loader = ({ loadedCount, totalFirst, isLoaded }) => {
         }}
       >
         <img
-          src="/images/survey-corps.jpg"
+          src="/images/survey-corps.webp"
           alt="Survey Corps"
           className="lg:w-[30vw] lg:h-[30vh] md:w-[60vw] md:h-[60vh]  object-contain"
         />
