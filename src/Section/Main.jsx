@@ -4,24 +4,24 @@ const TOTAL = 18;
 
 const Main = ({ onVideoLoaded, onAllReady }) => {
   const videos = [
-    { id: 1, src: "/Videos/Clip1.mp4" },
-    { id: 2, src: "/Videos/Clip2.mp4" },
-    { id: 3, src: "/Videos/Clip3.mp4" },
-    { id: 4, src: "/Videos/Clip4.mp4" },
-    { id: 5, src: "/Videos/Clip5.mp4" },
-    { id: 6, src: "/Videos/Clip6.mp4" },
-    { id: 7, src: "/Videos/Clip7.mp4" },
-    { id: 8, src: "/Videos/Clip8.mp4" },
-    { id: 9, src: "/Videos/Clip9.mp4" },
-    { id: 10, src: "/Videos/Clip10.mp4" },
-    { id: 11, src: "/Videos/Clip11.mp4" },
-    { id: 12, src: "/Videos/Clip12.mp4" },
-    { id: 13, src: "/Videos/Clip13.mp4" },
-    { id: 14, src: "/Videos/Clip14.mp4" },
-    { id: 15, src: "/Videos/Clip15.mp4" },
-    { id: 16, src: "/Videos/Clip16.mp4" },
-    { id: 17, src: "/Videos/Clip17.mp4" },
-    { id: 18, src: "/Videos/Clip18.mp4" },
+    { id: 1, src: "/Videos/Clip1.webm" },
+    { id: 2, src: "/Videos/Clip2.webm" },
+    { id: 3, src: "/Videos/Clip3.webm" },
+    { id: 4, src: "/Videos/Clip4.webm" },
+    { id: 5, src: "/Videos/Clip5.webm" },
+    { id: 6, src: "/Videos/Clip6.webm" },
+    { id: 7, src: "/Videos/Clip7.webm" },
+    { id: 8, src: "/Videos/Clip8.webm" },
+    { id: 9, src: "/Videos/Clip9.webm" },
+    { id: 10, src: "/Videos/Clip10.webm" },
+    { id: 11, src: "/Videos/Clip11.webm" },
+    { id: 12, src: "/Videos/Clip12.webm" },
+    { id: 13, src: "/Videos/Clip13.webm" },
+    { id: 14, src: "/Videos/Clip14.webm" },
+    { id: 15, src: "/Videos/Clip15.webm" },
+    { id: 16, src: "/Videos/Clip16.webm" },
+    { id: 17, src: "/Videos/Clip17.webm" },
+    { id: 18, src: "/Videos/Clip18.webm" },
   ];
 
   const names = [
@@ -54,7 +54,7 @@ const Main = ({ onVideoLoaded, onAllReady }) => {
               {group.slice(0, 3).map((video) => (
                 <video
                   key={video.id}
-                  className="lg:w-[22vw] lg:h-[30vh] md:w-[28vw] md:h-[22vh] w-[28vw] h-[16vh] object-cover"
+                  className="lg:w-[30vw] lg:h-[30vh] md:w-[28vw] md:h-[22vh] w-[28vw] h-[16vh] object-cover"
                   src={video.src}
                   autoPlay
                   loop
@@ -76,7 +76,7 @@ const Main = ({ onVideoLoaded, onAllReady }) => {
               {group.slice(3, 6).map((video) => (
                 <video
                   key={video.id}
-                  className="lg:w-[22vw] lg:h-[30vh] md:w-[28vw] md:h-[22vh] w-[28vw] h-[16vh] object-cover"
+                  className="lg:w-[30vw] lg:h-[30vh] md:w-[28vw] md:h-[22vh] w-[28vw] h-[16vh] object-cover"
                   src={video.src}
                   autoPlay
                   loop

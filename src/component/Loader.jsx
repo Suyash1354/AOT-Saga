@@ -34,7 +34,7 @@ const Loader = ({ loadedCount, totalFirst, isLoaded }) => {
         <img
           src="/images/survey-corps.jpg"
           alt="Survey Corps"
-          className="w-[30vw] h-[30vh] object-contain"
+          className="lg:w-[30vw] lg:h-[30vh] md:w-[60vw] md:h-[60vh]  object-contain"
         />
       </div>
 
