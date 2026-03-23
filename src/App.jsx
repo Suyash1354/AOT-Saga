@@ -1,24 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
 import Main from "./Section/Main";
 import First from "./Section/First";
-import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 import About from "./Section/About";
 import Loader from "./component/Loader";
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.registerPlugin(ScrollTrigger);
 
-const FIRST_BATCH = 6;
+const TOTAL = 18;
 
 const App = () => {
   const audioRef = useRef(null);
+  const [loadedCount, setLoadedCount] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  // Loader state
-  const [loadedCount, setLoadedCount] = useState(0);   // how many of first 6 loaded
-  const [isLoaded, setIsLoaded] = useState(false);      // first 6 all ready?
 
-  // Play audio on first click
   useEffect(() => {
     const handleFirstClick = () => {
       audioRef.current?.play();
@@ -28,8 +25,10 @@ const App = () => {
     return () => document.removeEventListener("click", handleFirstClick);
   }, []);
 
-  // GSAP scroll animation (unchanged)
-  useGSAP(() => {
+
+  useEffect(() => {
+    if (!isLoaded) return;
+
     gsap.from(".first-section", {
       opacity: 0,
       duration: 4,
@@ -49,14 +48,13 @@ const App = () => {
 
     tl.to(".first-text", { opacity: 0, duration: 1, ease: "power4.out" });
     tl.to(".second-text", { opacity: 0, ease: "power4.out" }, "<");
-  }, []);
+  }, [isLoaded]); 
 
   return (
     <div className="w-full h-screen bg-black">
-      {/* Loader — visible until first 6 videos fire onLoadedData */}
       <Loader
         loadedCount={loadedCount}
-        totalFirst={FIRST_BATCH}
+        totalFirst={TOTAL}
         isLoaded={isLoaded}
       />
 
@@ -65,7 +63,7 @@ const App = () => {
       <First />
       <Main
         onVideoLoaded={(count) => setLoadedCount(count)}
-        onFirstBatchReady={() => setIsLoaded(true)}
+        onAllReady={() => setIsLoaded(true)}
       />
       <About />
     </div>
