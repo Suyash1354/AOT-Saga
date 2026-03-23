@@ -162,3 +162,118 @@ const Main = () => {
 };
 
 export default Main;
+
+
+
+
+
+
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import React, { useRef } from "react";
+
+const About = () => {
+    const characters = [
+        { name: "Eren", img: "/images/Eren.webp" },
+        { name: "Mikasa", img: "/images/Mikasa.webp" },
+        { name: "Armin", img: "/images/Armin.webp" },
+        { name: "Erwin", img: "/images/Erwin.webp" },
+        { name: "Levi", img: "/images/Levi.webp" },
+        { name: "Hange", img: "/images/Hange.webp" },
+    ];
+
+    const names = ["EREN", "MIKASA", "ARMIN", "ERWIN", "LEVI", "HANGE"];
+
+    const surveyRef = useRef(null);
+    const textRefs = useRef([]);
+    let currentActive = useRef(null);
+
+    const handleMouseEnter = (index) => {
+        // Slide "SURVEY" up and out
+        gsap.to(surveyRef.current, {
+            y: "-100%",
+            duration: 0.5,
+            ease: "power3.inOut",
+        });
+
+        // If another name was visible, send it back down immediately
+        if (currentActive.current !== null && currentActive.current !== index) {
+            gsap.set(textRefs.current[currentActive.current], { y: "100%" });
+        }
+
+        // Slide the hovered name up from bottom
+        gsap.fromTo(
+            textRefs.current[index],
+            { y: "100%" },
+            { y: "0%", duration: 0.5, ease: "power3.inOut" }
+        );
+
+        currentActive.current = index;
+    };
+
+    const handleMouseLeave = () => {
+        const activeIndex = currentActive.current;
+
+        // Slide active name back down
+        if (activeIndex !== null) {
+            gsap.to(textRefs.current[activeIndex], {
+                y: "100%",
+                duration: 0.5,
+                ease: "power3.inOut",
+            });
+        }
+
+        // Slide "SURVEY" back in from bottom
+        gsap.to(surveyRef.current, {
+            y: "0%",
+            duration: 0.5,
+            ease: "power3.inOut",
+        });
+
+        currentActive.current = null;
+    };
+
+    return (
+        <section className="w-full h-screen bg-black">
+            <div className="Container w-full h-screen flex flex-col justify-center items-center">
+                <div className="Images w-full h-[50%] z-50 flex justify-center items-center gap-[1vw]">
+                    {characters.map((image, id) => (
+                        <img
+                            key={id}
+                            src={image.img}
+                            alt="AOT"
+                            className="lg:w-20 lg:h-20 rounded-[10px] object-cover cursor-pointer"
+                            onMouseEnter={() => handleMouseEnter(id)}
+                            onMouseLeave={handleMouseLeave}
+                        />
+                    ))}
+                </div>
+
+                {/* Text mask container */}
+                <div className="Text relative w-full flex justify-center font-[round8-four] text-[20vw] z-20 overflow-hidden h-[25vw]">
+                    
+                    {/* Default SURVEY text */}
+                    <h1
+                        ref={surveyRef}
+                        className="text-white w-full text-center absolute bottom-0 translate-y-0"
+                    >
+                        SURVEY
+                    </h1>
+
+                    {/* Character names - each starts below (hidden) */}
+                    {names.map((name, id) => (
+                        <h1
+                            key={id}
+                            ref={(el) => (textRefs.current[id] = el)}
+                            className="text-amber-300 w-full text-center absolute bottom-0 translate-y-full"
+                        >
+                            {name}
+                        </h1>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+};
+
+export default About;
